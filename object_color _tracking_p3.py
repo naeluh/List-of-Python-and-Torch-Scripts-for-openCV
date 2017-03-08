@@ -1,3 +1,4 @@
+# ref: http://www.linuxcircle.com/2015/05/24/object-detection-based-on-color-with-python-3-opencv-3-and-raspberry-pi-2/
 # import the necessary packages
 from picamera.array import PiRGBArray
 from picamera import PiCamera
