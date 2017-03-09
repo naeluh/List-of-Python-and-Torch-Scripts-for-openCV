@@ -1,5 +1,8 @@
 # import the necessary packages
 import cv2
+import logger
+
+
 
 class ShapeDetector:
 	def __init__(self):
@@ -28,8 +31,14 @@ class ShapeDetector:
 			shape = "square" if ar >= 0.95 and ar <= 1.05 else "rectangle"
 
 		# if the shape is a pentagon, it will have 5 vertices
-		elif len(approx) == 5:
-			shape = "pentagon"
+		elif len(approx) > 5:
+			shape = "lines"
+	
+
+
+		# if the shape is a pentagon, it will have 5 vertices
+		# elif len(approx) == 5:
+			# shape = "pentagon"
 
 		# otherwise, we assume the shape is a circle
 		else:

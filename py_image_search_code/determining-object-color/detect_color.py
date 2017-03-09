@@ -41,6 +41,7 @@ cl = ColorLabeler()
 for c in cnts:
 	# compute the center of the contour
 	M = cv2.moments(c)
+if M != 0: 
 	cX = int((M["m10"] / M["m00"]) * ratio)
 	cY = int((M["m01"] / M["m00"]) * ratio)
 
