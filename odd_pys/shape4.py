@@ -1,9 +1,11 @@
 import cv2
 import numpy as np
 import imutils
+from matplotlib import pyplot as plt
+
 
 # Read image
-src = cv2.imread("black.jpg")
+# src = cv2.imread("black.jpg")
 
 image = cv2.imread("c.jpg")
 resized = imutils.resize(image, width=300)
@@ -14,8 +16,12 @@ blurred = cv2.GaussianBlur(resized, (5, 5), 0)
 gray = cv2.cvtColor(resized, cv2.COLOR_BGR2GRAY)
 lab = cv2.cvtColor(resized, cv2.COLOR_BGR2LAB)
 imagem = cv2.bitwise_not(gray)
-thresh = cv2.threshold(gray, 100, 255, cv2.THRESH_BINARY)[1]
+thresh = cv2.threshold(gray, 150, 255, cv2.THRESH_BINARY)[1]
+th4 = cv2.threshold(blurred,0,255,cv2.THRESH_BINARY+cv2.THRESH_OTSU)[1]
+th3 = cv2.adaptiveThreshold(gray,255,cv2.ADAPTIVE_THRESH_GAUSSIAN_C, cv2.THRESH_BINARY,11,2)
 cv2.imshow("Thresh", thresh)
+cv2.imshow("adaptiveThreshold", th3)
+cv2.imshow("THRESH_OTSU", th4)
 cv2.imshow("Lab", lab)
 cv2.imshow("Imagem", imagem)
 cv2.imshow("Blurred", blurred)
@@ -40,7 +46,7 @@ for c in cnts:
 	c = c.astype("float")
 	c *= ratio
 	c = c.astype("int")
-	cv2.drawContours(image, [c], -1, (0, 255, 0), 3)
+	cv2.drawContours(image, [c], 0, (0, 255, 0), 3)
 
 	# show the output image
 	cv2.imshow("Image", image)
