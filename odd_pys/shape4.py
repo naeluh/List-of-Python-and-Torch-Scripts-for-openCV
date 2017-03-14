@@ -13,12 +13,12 @@ ratio = image.shape[0] / float(resized.shape[0])
 
 # Find Contours 
 blurred = cv2.GaussianBlur(resized, (5, 5), 0)
-gray = cv2.cvtColor(resized, cv2.COLOR_BGR2GRAY)
+gray = cv2.cvtColor(blurred, cv2.COLOR_BGR2GRAY)
 lab = cv2.cvtColor(resized, cv2.COLOR_BGR2LAB)
-imagem = cv2.bitwise_not(gray)
-thresh = cv2.threshold(gray, 150, 255, cv2.THRESH_BINARY)[1]
-th4 = cv2.threshold(blurred,0,255,cv2.THRESH_BINARY+cv2.THRESH_OTSU)[1]
-th3 = cv2.adaptiveThreshold(gray,255,cv2.ADAPTIVE_THRESH_GAUSSIAN_C, cv2.THRESH_BINARY,11,2)
+thresh = cv2.threshold(gray, 150, 255, cv2.THRESH_BINARY_INV)[1]
+imagem = cv2.bitwise_not(thresh)
+th4 = cv2.threshold(gray,0,255,cv2.THRESH_BINARY_INV+cv2.THRESH_OTSU)[1]
+th3 = cv2.adaptiveThreshold(gray,255,cv2.ADAPTIVE_THRESH_GAUSSIAN_C, cv2.THRESH_BINARY_INV,11,2)
 cv2.imshow("Thresh", thresh)
 cv2.imshow("adaptiveThreshold", th3)
 cv2.imshow("THRESH_OTSU", th4)
@@ -26,7 +26,7 @@ cv2.imshow("Lab", lab)
 cv2.imshow("Imagem", imagem)
 cv2.imshow("Blurred", blurred)
 cv2.imshow("Gray", gray)
-cnts = cv2.findContours(thresh.copy(), cv2.RETR_EXTERNAL,cv2.CHAIN_APPROX_SIMPLE)
+cnts = cv2.findContours(imagem.copy(), cv2.RETR_EXTERNAL,cv2.CHAIN_APPROX_SIMPLE)
 cnts = cnts[0] if imutils.is_cv2() else cnts[1]
 
 
@@ -46,7 +46,7 @@ for c in cnts:
 	c = c.astype("float")
 	c *= ratio
 	c = c.astype("int")
-	cv2.drawContours(image, [c], 0, (0, 255, 0), 3)
+	cv2.drawContours(image, [c], 0, (0, 255, 0), 1)
 
 	# show the output image
 	cv2.imshow("Image", image)
