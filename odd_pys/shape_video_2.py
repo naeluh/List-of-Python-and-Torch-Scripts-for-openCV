@@ -16,8 +16,7 @@ def run_main():
             cv2.THRESH_BINARY_INV, 11, 1)
 
         kernel = np.ones((3, 3), np.uint8)
-        closing = cv2.morphologyEx(thresh, cv2.MORPH_CLOSE,
-            kernel, iterations=4)
+        closing = cv2.morphologyEx(thresh, cv2.MORPH_CLOSE, kernel, iterations=4)
 
         cont_img = closing.copy()
         _,contours, hierarchy = cv2.findContours(cont_img, cv2.RETR_EXTERNAL,cv2.CHAIN_APPROX_SIMPLE)
