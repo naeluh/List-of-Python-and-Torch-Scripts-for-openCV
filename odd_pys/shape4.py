@@ -3,11 +3,14 @@ import numpy as np
 import imutils
 from matplotlib import pyplot as plt
 
-def processImage(img):
-   img = cv2.imread(img)
-   resized = imutils.resize(image, width=300)
-	
-   return img
+def processImage(img,choice):
+ img = cv2.imread(img)
+ resized = imutils.resize(img, width=300) 
+ ratio = img.shape[0] / float(resized.shape[0])
+ blurred = cv2.GaussianBlur(resized, (5, 5), 0)
+ gray = cv2.cvtColor(blurred, cv2.COLOR_BGR2GRAY)
+ thresh = cv2.threshold(gray, 150, 255, cv2.THRESH_BINARY)[1]
+ return choice
 
 
 # Read image
@@ -28,7 +31,7 @@ gray = cv2.cvtColor(blurred, cv2.COLOR_BGR2GRAY)
 
 lab = cv2.cvtColor(resized, cv2.COLOR_BGR2LAB)
 
-thresh = cv2.threshold(gray, 150, 255, cv2.THRESH_BINARY)[1]
+thresh = cv2.threshold(gray, 180, 255, cv2.THRESH_BINARY)[1]
 
 imagem = cv2.bitwise_not(thresh)
 
@@ -42,9 +45,9 @@ gray_blur = cv2.GaussianBlur(gray, (15, 15), 0)
 
 thresh_2 = cv2.adaptiveThreshold(gray_blur, 255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C,cv2.THRESH_BINARY_INV, 11, 1)
 
-kernel = np.ones((3, 3), np.uint8)
+kernel = np.ones((1, 1), np.uint8)
 
-closing = cv2.morphologyEx(thresh, cv2.MORPH_CLOSE, kernel, iterations=4)
+closing = cv2.morphologyEx(thresh, cv2.MORPH_CLOSE, kernel, iterations=500)
 
 
 
@@ -71,7 +74,7 @@ cv2.imshow("gray_2", gray_2)
 
 cv2.imshow("Imagem", imagem)
 
-cnts = cv2.findContours(thresh.copy(), cv2.RETR_TREE,cv2.CHAIN_APPROX_SIMPLE)
+cnts = cv2.findContours(closing.copy(), cv2.RETR_TREE,cv2.CHAIN_APPROX_SIMPLE)
 
 cnts2 = cv2.findContours(closing.copy(), cv2.RETR_EXTERNAL ,cv2.CHAIN_APPROX_SIMPLE)
 
