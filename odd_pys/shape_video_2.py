@@ -8,7 +8,7 @@ def run_main():
 
     while(True):
         ret, frame = cap.read()
-        roi = frame[0:500, 0:500]
+          = frame[0:500, 0:500]
         gray = cv2.cvtColor(roi, cv2.COLOR_BGR2GRAY)
 
         gray_blur = cv2.GaussianBlur(gray, (15, 15), 0)

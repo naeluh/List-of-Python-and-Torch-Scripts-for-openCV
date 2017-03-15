@@ -16,11 +16,11 @@ def processImage(img,choice):
 # Read image
 # src = cv2.imread("black.jpg")
 
-image = cv2.imread("c.jpg")
+image = cv2.imread("a.jpg")
 
 image2 = cv2.imread("c.jpg")
 
-resized = imutils.resize(image, width=300)
+resized = imutils.resize(image, width=600)
 
 ratio = image.shape[0] / float(resized.shape[0])
 
@@ -90,6 +90,7 @@ for c in cnts:
 	if M["m00"] != 0:
 	    cX = int(M["m10"] / M["m00"])
 	    cY = int(M["m01"] / M["m00"])
+
 	else:
 	    cX, cY = 0, 0
 
@@ -99,30 +100,12 @@ for c in cnts:
 	c = c.astype("float")
 	c *= ratio
 	c = c.astype("int")
+	cX *= ratio
+	cY *= ratio
 	cv2.drawContours(image, [c], -1, (0, 255, 0), 3)
+	cv2.circle(image, (int(cX),int(cY)),5,300,3)  
 
 cv2.imshow("Image", image)
 
-	# loop over the contours
-for c2 in cnts2:
-	# compute the center of the contour
-	M2 = cv2.moments(c2)
-	if M["m00"] != 0:
-	    c2X = int(M2["m10"] / M2["m00"])
-	    c2Y = int(M2["m01"] / M2["m00"])
-	else:
-	    c2X, c2Y = 0, 0
-
-	# multiply the contour (x, y)-coordinates by the resize ratio,
-	# then draw the contours and the name of the shape and labeled
-	# color on the image
-	c2 = c2.astype("float")
-	c2 *= ratio
-	c2 = c2.astype("int")
-	cv2.drawContours(closing, [c2], -1, (0, 255, 255), 1)
-
-	# show the output image
-
-cv2.imshow("Image2", image2)
 cv2.waitKey(0)
 cv2.destroyAllWindows()
