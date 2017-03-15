@@ -47,6 +47,7 @@ thresh_2 = cv2.adaptiveThreshold(gray_blur, 255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C,
 
 kernel = np.ones((1, 1), np.uint8)
 
+
 closing = cv2.morphologyEx(thresh, cv2.MORPH_CLOSE, kernel, iterations=500)
 
 
