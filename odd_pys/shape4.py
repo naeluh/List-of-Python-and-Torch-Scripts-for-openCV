@@ -3,11 +3,19 @@ import numpy as np
 import imutils
 from matplotlib import pyplot as plt
 
+def processImage(img):
+   img = cv2.imread(img)
+   resized = imutils.resize(image, width=300)
+	
+   return img
+
 
 # Read image
 # src = cv2.imread("black.jpg")
 
 image = cv2.imread("c.jpg")
+
+image2 = cv2.imread("c.jpg")
 
 resized = imutils.resize(image, width=300)
 
@@ -38,6 +46,9 @@ kernel = np.ones((3, 3), np.uint8)
 
 closing = cv2.morphologyEx(thresh, cv2.MORPH_CLOSE, kernel, iterations=4)
 
+
+
+
 cv2.imshow("Thresh", thresh)
 
 cv2.imshow("adaptiveThreshold", th3)
@@ -60,9 +71,13 @@ cv2.imshow("gray_2", gray_2)
 
 cv2.imshow("Imagem", imagem)
 
-cnts = cv2.findContours(closing  .copy(), cv2.RETR_EXTERNAL,cv2.CHAIN_APPROX_SIMPLE)
+cnts = cv2.findContours(thresh.copy(), cv2.RETR_TREE,cv2.CHAIN_APPROX_SIMPLE)
+
+cnts2 = cv2.findContours(closing.copy(), cv2.RETR_EXTERNAL ,cv2.CHAIN_APPROX_SIMPLE)
+
 cnts = cnts[0] if imutils.is_cv2() else cnts[1]
 
+cnts2 = cnts2[0] if imutils.is_cv2() else cnts2[1]
 
 # loop over the contours
 for c in cnts:
@@ -80,9 +95,30 @@ for c in cnts:
 	c = c.astype("float")
 	c *= ratio
 	c = c.astype("int")
-	cv2.drawContours(image, [c], 0, (0, 255, 0), 3)
+	cv2.drawContours(image, [c], -1, (0, 255, 0), 3)
+
+cv2.imshow("Image", image)
+
+	# loop over the contours
+for c2 in cnts2:
+	# compute the center of the contour
+	M2 = cv2.moments(c2)
+	if M["m00"] != 0:
+	    c2X = int(M2["m10"] / M2["m00"])
+	    c2Y = int(M2["m01"] / M2["m00"])
+	else:
+	    c2X, c2Y = 0, 0
+
+	# multiply the contour (x, y)-coordinates by the resize ratio,
+	# then draw the contours and the name of the shape and labeled
+	# color on the image
+	c2 = c2.astype("float")
+	c2 *= ratio
+	c2 = c2.astype("int")
+	cv2.drawContours(closing, [c2], -1, (0, 255, 255), 1)
 
 	# show the output image
-cv2.imshow("Image", image)
+
+cv2.imshow("Image2", image2)
 cv2.waitKey(0)
 cv2.destroyAllWindows()
