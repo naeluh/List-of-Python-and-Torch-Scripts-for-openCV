@@ -105,7 +105,7 @@ for c in cnts:
 	cv2.drawContours(image, [c], -1, (0, 255, 0), 3)
 	cv2.circle(image, (int(cX),int(cY)),5,300,3)  
 
-cv2.imshow("Image", image)
+cv2.imwrite("Image.jpg", image)
 
 cv2.waitKey(0)
 cv2.destroyAllWindows()
