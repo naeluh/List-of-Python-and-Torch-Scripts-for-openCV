@@ -15,6 +15,7 @@ def processImage(img,choice):
 
 # Read image
 # src = cv2.imread("black.jpg")
+image = np.random.rand(3,)
 
 image = cv2.imread("a.jpg")
 
@@ -53,27 +54,27 @@ closing = cv2.morphologyEx(thresh, cv2.MORPH_CLOSE, kernel, iterations=500)
 
 
 
-cv2.imshow("Thresh", thresh)
+#cv2.imshow("Thresh", thresh)
 
-cv2.imshow("adaptiveThreshold", th3)
+#cv2.imshow("adaptiveThreshold", th3)
 
-cv2.imshow("THRESH_OTSU", th4)
+#cv2.imshow("THRESH_OTSU", th4)
 
 cv2.imshow("Lab", lab)
 
-cv2.imshow("Blurred", blurred)
+#cv2.imshow("Blurred", blurred)
 
-cv2.imshow("Gray", gray)
+#cv2.imshow("Gray", gray)
 
 cv2.imshow("closing", closing)
 
-cv2.imshow("thresh_2", thresh_2)
+#cv2.imshow("thresh_2", thresh_2)
 
-cv2.imshow("gray_blur", gray_blur)
+#cv2.imshow("gray_blur", gray_blur)
 
-cv2.imshow("gray_2", gray_2)
+#cv2.imshow("gray_2", gray_2)
 
-cv2.imshow("Imagem", imagem)
+#cv2.imshow("Imagem", imagem)
 
 cnts = cv2.findContours(closing.copy(), cv2.RETR_TREE,cv2.CHAIN_APPROX_SIMPLE)
 
@@ -102,10 +103,12 @@ for c in cnts:
 	c = c.astype("int")
 	cX *= ratio
 	cY *= ratio
-	cv2.drawContours(image, [c], -1, (0, 255, 0), 3)
+	cv2.drawContours(image, [c], -1, (0, 255, 0), 5)
 	cv2.circle(image, (int(cX),int(cY)),5,300,3)  
 
-cv2.imwrite("Image.jpg", image)
-
+cv2.imshow("Image", image)
+cv2.imwrite('i-%s.jpg' % (image,), image)
+#cv2.imwrite('lab-%s.jpg' % (n,), lab)
 cv2.waitKey(0)
 cv2.destroyAllWindows()
+ 
