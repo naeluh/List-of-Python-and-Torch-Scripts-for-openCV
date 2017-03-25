@@ -8,14 +8,14 @@ import imutils
 import cv2
 
 # construct the argument parse and parse the arguments
-ap = argparse.ArgumentParser()
-ap.add_argument("-i", "--image", required=True,
-	help="path to the input image")
-args = vars(ap.parse_args())
+#ap = argparse.ArgumentParser()
+#ap.add_argument("-i", "--image", required=True,
+#	help="path to the input image")
+#args = vars(ap.parse_args())
 
 # load the image and resize it to a smaller factor so that
 # the shapes can be approximated better
-image = cv2.imread(args["image"])
+image = cv2.imread(" imageresized_0.jpg") #import image
 resized = imutils.resize(image, width=300)
 ratio = image.shape[0] / float(resized.shape[0])
 
@@ -37,8 +37,11 @@ for c in cnts:
 	# compute the center of the contour, then detect the name of the
 	# shape using only the contour
 	M = cv2.moments(c)
-	cX = int((M["m10"] / M["m00"]) * ratio)
-	cY = int((M["m01"] / M["m00"]) * ratio)
+	if M["m00"] != 0:
+	    cX = int(M["m10"] / M["m00"])
+	    cY = int(M["m01"] / M["m00"])
+	else:
+	    cX, cY = 0, 0
 	shape = sd.detect(c)
 
 	# multiply the contour (x, y)-coordinates by the resize ratio,
