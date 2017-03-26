@@ -2,7 +2,7 @@ import numpy as np
 import cv2 #this is the main openCV class, the python binding file should be in /pythonXX/Lib/site-packages
 from matplotlib import pyplot as plt
 
-gwash = cv2.imread("imageresized_0.jpg") #import image
+gwash = cv2.imread("imageresized_6.jpg") #import image
 #blurred = cv2.GaussianBlur(gwash, (5, 5), 0)
 gwashBW = cv2.cvtColor(gwash, cv2.COLOR_BGR2GRAY) #change to grayscale
 
