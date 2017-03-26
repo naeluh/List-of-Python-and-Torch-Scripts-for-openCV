@@ -9,6 +9,7 @@ Notes:
 5. Find Largest Shape http://creativemorphometrics.co.vu/blog/2014/08/05/automated-outlines-with-opencv-in-python/
 5. Shape matching using fourier descriptor http://answers.opencv.org/question/57074/shape-matching-using-fourier-descriptor-frequency-domain/
 6. FeatureDetection http://answers.opencv.org/question/15041/creating-roi-from-defined-point/
+7. Discussion on image comaprison http://stackoverflow.com/questions/23931/algorithm-to-compare-two-images 
 
 Links for Reference:
 
