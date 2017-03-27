@@ -9,7 +9,7 @@ hgrey = cv2.cvtColor(opencv_haystack, cv2.COLOR_BGR2GRAY)
 
 # build feature detector and descriptor extractor
 hessian_threshold = 85
-detector = cv2.SURF_create(hessian_threshold)
+detector = cv2.xfeatures2d.SURF_create(hessian_threshold)
 (hkeypoints, hdescriptors) = detector.detect(hgrey, None, useProvidedKeypoints = False)
 (nkeypoints, ndescriptors) = detector.detect(ngrey, None, useProvidedKeypoints = False)
 
