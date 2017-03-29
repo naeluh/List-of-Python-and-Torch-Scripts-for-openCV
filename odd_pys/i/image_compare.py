@@ -10,8 +10,8 @@ hgrey = cv2.cvtColor(opencv_haystack, cv2.COLOR_BGR2GRAY)
 # build feature detector and descriptor extractor
 hessian_threshold = 85
 detector = cv2.xfeatures2d.SURF_create(hessian_threshold)
-(hkeypoints, hdescriptors) = detector.detect(hgrey, None, useProvidedKeypoints = False)
-(nkeypoints, ndescriptors) = detector.detect(ngrey, None, useProvidedKeypoints = False)
+(hkeypoints, hdescriptors) = detector.detectAndCompute(hgrey, None, useProvidedKeypoints = False)
+(nkeypoints, ndescriptors) = detector.detectAndCompute(ngrey, None, useProvidedKeypoints = False)
 
 # extract vectors of size 64 from raw descriptors numpy arrays
 rowsize = len(hdescriptors) / len(hkeypoints)
@@ -28,7 +28,7 @@ else:
 samples = hrows
 responses = numpy.arange(len(hkeypoints), dtype = numpy.float32)
 #print len(samples), len(responses)
-knn = cv2.KNearest()
+knn = cv2.ml.KNearest_create()
 knn.train(samples,responses)
 
 # retrieve index and value through enumeration
