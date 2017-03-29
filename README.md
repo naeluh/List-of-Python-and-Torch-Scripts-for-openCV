@@ -10,8 +10,8 @@ Notes:
 5. Shape matching using fourier descriptor http://answers.opencv.org/question/57074/shape-matching-using-fourier-descriptor-frequency-domain/
 6. FeatureDetection http://answers.opencv.org/question/15041/creating-roi-from-defined-point/
 7. Discussion on image comaprison http://stackoverflow.com/questions/23931/algorithm-to-compare-two-images 
-
 8. Found tutorials https://github.com/ibininja/openCV3_tutorials
+9. Quick Image Comparison http://stackoverflow.com/questions/4196453/simple-and-fast-method-to-compare-images-for-similarity
 
 Links for Reference:
 
