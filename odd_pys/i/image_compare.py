@@ -29,13 +29,13 @@ samples = hrows
 responses = numpy.arange(len(hkeypoints), dtype = numpy.float32)
 #print len(samples), len(responses)
 knn = cv2.ml.KNearest_create()
-knn.train(samples,responses)
+knn.train(samples,cv2.ml.ROW_SAMPLE,responses)
 
 # retrieve index and value through enumeration
 for i, descriptor in enumerate(nrows):
     descriptor = numpy.array(descriptor, dtype = numpy.float32).reshape((1, rowsize))
     #print i, descriptor.shape, samples[0].shape
-    retval, results, neigh_resp, dists = knn.find_nearest(descriptor, 1)
+    retval, results, neigh_resp, dists = knn.findNearest(descriptor, 1)
     res, dist =  int(results[0][0]), dists[0][0]
     #print res, dist
 
