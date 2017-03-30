@@ -1,14 +1,17 @@
 import cv2
 import numpy
 
-opencv_haystack =cv2.imread('img/imageresized_83.jpg')
+opencv_haystack =cv2.imread('images/imageresized_0.jpg')
 opencv_needle =cv2.imread('img/out0.jpg')
+
+#opencv_haystack =cv2.imread('img/out0.jpg')
+#opencv_needle =cv2.imread('images/imageresized_0.jpg')
 
 ngrey = cv2.cvtColor(opencv_needle, cv2.COLOR_BGR2GRAY)
 hgrey = cv2.cvtColor(opencv_haystack, cv2.COLOR_BGR2GRAY)
 
 # build feature detector and descriptor extractor
-hessian_threshold = 85
+hessian_threshold = 1
 detector = cv2.xfeatures2d.SURF_create(hessian_threshold)
 (hkeypoints, hdescriptors) = detector.detectAndCompute(hgrey, None, useProvidedKeypoints = False)
 (nkeypoints, ndescriptors) = detector.detectAndCompute(ngrey, None, useProvidedKeypoints = False)
