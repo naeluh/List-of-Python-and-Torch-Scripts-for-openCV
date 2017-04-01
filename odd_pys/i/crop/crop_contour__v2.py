@@ -2,10 +2,10 @@ import numpy as np
 import cv2
 
 
-gwash = cv2.imread('images/imageresized_83.jpg')# Read in your image
+gwash = cv2.imread('images/imageresized_0.jpg')# Read in your image
 gwashBW = cv2.cvtColor(gwash, cv2.COLOR_BGR2GRAY) #change to grayscale
-ret,thresh1 = cv2.threshold(gwashBW,179,255,cv2.THRESH_BINARY) #the value of 15 is chosen by trial-and-error to produce the best outline of the skull
-kernel = np.ones((5,5),np.uint8) #square image kernel used for erosion
+ret,thresh1 = cv2.threshold(gwashBW,170,255,cv2.THRESH_BINARY) #the value of 15 is chosen by trial-and-error to produce the best outline of the skull
+kernel = np.ones((4,4),np.uint8) #square image kernel used for erosion
 erosion = cv2.erode(thresh1, kernel,iterations = 1) #refines all edges in the binary image
 opening = cv2.morphologyEx(erosion, cv2.MORPH_OPEN, kernel)
 closing = cv2.morphologyEx(opening, cv2.MORPH_CLOSE, kernel) #this is for further removing small noises and holes in the image
