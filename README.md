@@ -12,6 +12,7 @@ Notes:
 7. Discussion on image comaprison http://stackoverflow.com/questions/23931/algorithm-to-compare-two-images 
 8. Found tutorials https://github.com/ibininja/openCV3_tutorials
 9. Quick Image Comparison http://stackoverflow.com/questions/4196453/simple-and-fast-method-to-compare-images-for-similarity
+10. gphoto nikon http://scottlobdell.me/2014/02/control-an-slr-camera-from-python-nikon-canon-sony-etc/
 
 Links for Reference:
 
