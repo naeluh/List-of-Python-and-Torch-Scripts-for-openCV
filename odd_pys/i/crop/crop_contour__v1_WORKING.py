@@ -36,17 +36,17 @@ def process(filename, key):
 	# Threshold for an optimal value, it may vary depending on the image.
 	gwash[dst>0.01*dst.max()]=[0,0,255]
 
-	cv2.imshow('dst',gwash)
+	#cv2.imshow('dst',gwash)
 	#cv2.imwrite( 'img/dst{}.jpg'.format(key) ,gwash )
 	#cv2.drawContours(closing, [cnt], -1, (255, 255, 0), 1 , 1)
 	
 	
-	cv2.imshow('Output', out)
-	cv2.imshow('cleaner2.png', closing)
-	#cv2.imwrite( 'img/closing{}.jpg'.format(key) ,closing )
+	#cv2.imshow('Output', out)
+	#cv2.imshow('cleaner2.png', closing)
+	cv2.imwrite( 'img/closing{}.jpg'.format(key) ,closing )
 	print closing 
 	#cv2.imwrite('cleaner2.png', closing)
 	cv2.waitKey(0)
 	cv2.destroyAllWindows()
 
-process('images/imageresized_0.jpg',1)
+#process('images/imageresized_0.jpg',1)

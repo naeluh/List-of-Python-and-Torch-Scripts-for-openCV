@@ -1,7 +1,7 @@
 import glob
 import cv2
 
-from crop_contour_func import process
+from add_contours import process
 
-for (i,image_file) in enumerate(glob.iglob('images/*.jpg')):
+for (i,image_file) in enumerate(glob.iglob('images/*.png')):
         process(image_file, i)   

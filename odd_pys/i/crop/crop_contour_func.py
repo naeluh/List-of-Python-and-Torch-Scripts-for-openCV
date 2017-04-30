@@ -27,7 +27,7 @@ def process(filename, key):
 	out[mask == 255] = gwash[mask == 255]
 
 	# Show the output image
-	cv2.imwrite('img/out{}.jpg'.format(key),out)
+	cv2.imwrite('img/out{}.jpg'.format(key),opening)
 	print idx
 	#cv2.waitKey(0)
 	#cv2.destroyAllWindows()
